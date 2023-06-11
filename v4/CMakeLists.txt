@@ -20,7 +20,7 @@ qt_add_executable(appv4
 qt_add_qml_module(appv4
     URI v4
     VERSION 1.0
-    QML_FILES Main.qml CustomButton.qml CustomMenuItem.qml DriverList.qml DriverDetail.qml
+    QML_FILES Main.qml CustomButton.qml CustomMenuItem.qml DriverList.qml
     RESOURCES logoshort.png user-solid.svg car-solid.svg gas-pump-solid.svg
 )
 

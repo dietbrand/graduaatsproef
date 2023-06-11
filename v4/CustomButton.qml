@@ -17,8 +17,6 @@ Item {
             id: display
             text: root.title
             anchors.centerIn: parent
-            property color originalColor: "#00d4ff"
-            property color colorClicked: "#2397d3"
             color: "#ffffff"
             fontSizeMode: Text.Fit
             font.pixelSize: root.height * 0.7
