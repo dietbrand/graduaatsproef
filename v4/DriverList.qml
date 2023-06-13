@@ -13,7 +13,7 @@ GridView {
     cellWidth: parent.width * 0.2
     cellHeight: 20
 
-    property string fullName : ""
+    property string fullName
 
     Dialog {
         id: dialog

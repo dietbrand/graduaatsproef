@@ -62,6 +62,12 @@ Window {
                     Layout.preferredHeight: heroSection.width * 0.2
                     Layout.preferredWidth: heroSection.width * 0.2
                     source: "logoshort.png"
+                    RotationAnimation on rotation {
+                        loops: Animation.Infinite
+                        from: 0
+                        to: 360
+                        duration: 10000
+                    }
                 }
                 ColumnLayout {
 
@@ -145,9 +151,4 @@ Window {
     }
 }
 
-//RotationAnimation on rotation {
-//    loops: Animation.Infinite
-//    from: 0
-//    to: 360
-//    duration: 10000
-//}
+
