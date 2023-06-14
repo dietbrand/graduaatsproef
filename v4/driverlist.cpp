@@ -35,7 +35,7 @@ bool DriverList::setItemAt(int index, const DriverItem &item)
     return true;
 }
 
-void DriverList::fetchDriverData()
+void DriverList::fetchDrivers()
 {
     QEventLoop eventLoop;
     QNetworkAccessManager mgr;

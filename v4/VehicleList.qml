@@ -16,6 +16,8 @@ GridView {
     property string vehicleVin
     property string vehicleLP
     property string vehicleBM
+    property int vehicleDriver
+    property string vehicleDriverName
 
     Dialog {
         id: dialog
@@ -51,7 +53,10 @@ GridView {
                 }
             }
         }
-        onAccepted: editDialog.open()
+        onAccepted: {
+            vehicleDriverName = vehicleList.fetchDriverForVehicle(vehicleDriver);
+            editDialog.open();
+        }
     }
 
     Dialog {
@@ -59,17 +64,15 @@ GridView {
         modal: true
         anchors.centerIn: parent
         standardButtons: Dialog.Save | Dialog.Cancel
+        title: "Bestuurder"
         Column {
-            Label {
-                text: "Bewerk de gegevens"
-            }
             Row {
                 Label {
-                    text: "Nummerplaat: "
+                    text: "Bestuurder: "
                 }
                 TextField {
-                    id: editDialogNummerPlaat
-                    text: vehicleLP
+                    id: editDialogBestuurder
+                    text: vehicleDriverName
                 }
             }
         }
@@ -97,6 +100,7 @@ GridView {
                     vehicleVin = model.vin;
                     vehicleLP = model.licensePlate;
                     vehicleBM = model.brandModel;
+                    vehicleDriver = model.driver;
                 }
             }
         }

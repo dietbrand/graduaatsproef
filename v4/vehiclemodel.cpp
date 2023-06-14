@@ -26,6 +26,8 @@ VehicleModel::VehicleModel(QObject *parent)
             return QVariant(item.licensePlate);
         case BrandModelRole:
             return QVariant(item.brandModel);
+        case DriverRole:
+            return QVariant(item.driver);
         }
 
         return QVariant();
@@ -45,6 +47,8 @@ VehicleModel::VehicleModel(QObject *parent)
             item.licensePlate = value.toString();
         case BrandModelRole:
             item.brandModel = value.toString();
+        case DriverRole:
+            item.driver = value.toInt();
         }
         if (mList->setItemAt(index.row(), item)) {
             emit dataChanged(index, index, {role});
@@ -67,6 +71,7 @@ VehicleModel::VehicleModel(QObject *parent)
         names[VinRole] = "vin";
         names[LicensePlateRole] = "licensePlate";
         names[BrandModelRole] = "brandModel";
+        names[DriverRole] = "driver";
         return names;
     }
 

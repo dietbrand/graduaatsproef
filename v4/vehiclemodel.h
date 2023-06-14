@@ -16,7 +16,8 @@ public:
     enum {
         VinRole = Qt::UserRole,
         LicensePlateRole,
-        BrandModelRole
+        BrandModelRole,
+        DriverRole
     };
 
     // Basic functionality:

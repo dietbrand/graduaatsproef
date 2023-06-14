@@ -7,6 +7,7 @@ struct VehicleItem {
     QString vin;
     QString licensePlate;
     QString brandModel;
+    int driver;
 };
 
 class VehicleList : public QObject
@@ -18,7 +19,8 @@ public:
 
     bool setItemAt(int index, const VehicleItem &item);
 
-    Q_INVOKABLE void fetchVehicleData();
+    Q_INVOKABLE void fetchVehicles();
+    Q_INVOKABLE QString fetchDriverForVehicle(int driverID);
 
 signals:
     void preItemAppended();

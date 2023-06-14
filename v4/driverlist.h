@@ -22,7 +22,7 @@ public:
 
     bool setItemAt(int index, const DriverItem &item);
 
-    Q_INVOKABLE void fetchDriverData();
+    Q_INVOKABLE void fetchDrivers();
 
 signals:
     void preItemAppended();

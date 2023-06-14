@@ -35,7 +35,7 @@ Window {
                     heroSection.visible = false;
                     driverSection.visible = true;
                     vehicleSection.visible = false;
-                    driverList.fetchDriverData();
+                    driverList.fetchDrivers();
                 }
             }
             CustomMenuItem {
@@ -45,7 +45,7 @@ Window {
                     heroSection.visible = false;
                     driverSection.visible = false;
                     vehicleSection.visible = true;
-                    vehicleList.fetchVehicleData();
+                    vehicleList.fetchVehicles();
                 }
             }
             CustomMenuItem {

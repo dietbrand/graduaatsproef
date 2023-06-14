@@ -35,7 +35,7 @@ bool VehicleList::setItemAt(int index, const VehicleItem &item)
     return true;
 }
 
-void VehicleList::fetchVehicleData()
+void VehicleList::fetchVehicles()
 {
     QEventLoop eventLoop;
     QNetworkAccessManager mgr;
@@ -51,9 +51,38 @@ void VehicleList::fetchVehicleData()
         delete reply;
     }
     else {
-        // rapporteer fout
         qDebug() << "Failure" <<reply->errorString();
         delete reply;
+    }
+}
+
+QString VehicleList::fetchDriverForVehicle(int driverID) {
+    if (driverID == 0) {
+        return "";
+    }
+    try {
+        QEventLoop eventLoop;
+        QNetworkAccessManager mgr;
+        QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
+        QUrl url("https://affiche.me:7144/api/drivers/" + QString::number(driverID));
+        QNetworkRequest req(url);
+        QNetworkReply *reply = mgr.get(req);
+        reply->ignoreSslErrors();
+        eventLoop.exec();
+
+        if (reply->error() == QNetworkReply::NoError) {
+            QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
+            QJsonObject driver = doc.object();
+            QString firstName = driver.find("firstName")->toString();
+            QString lastName = driver.find("lastName")->toString();
+            return firstName + " " + lastName;
+        }
+        else {
+            throw (reply->errorString());
+        }
+        delete reply;
+    } catch (QString err){
+        return err;
     }
 }
 
@@ -80,11 +109,11 @@ void VehicleList::convertData(QString response)
     removeItems();
     for (int i = 0; i < jsonArr.size(); ++i) {
         VehicleItem item;
-        QJsonObject driver = jsonArr.at(i).toObject();
-        item.vin = driver.find("vin")->toString();
-        item.brandModel = driver.find("brandModel")->toString();
-
-        item.licensePlate = driver.find("licensePlate")->toString();
+        QJsonObject vehicle = jsonArr.at(i).toObject();
+        item.vin = vehicle.find("vin")->toString();
+        item.brandModel = vehicle.find("brandModel")->toString();
+        item.licensePlate = vehicle.find("licensePlate")->toString();
+        item.driver = vehicle.find("driverId")->toInt();
         appendItem(&item);
     }
 }
