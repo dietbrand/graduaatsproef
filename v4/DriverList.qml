@@ -53,12 +53,10 @@ GridView {
     Dialog {
         id: editDialog
         modal: true
+        title: "Bewerk de gegevens"
         anchors.centerIn: parent
         standardButtons: Dialog.Save | Dialog.Cancel
         Column {
-            Label {
-                text: "Bewerk de gegevens"
-            }
             Row {
                 Label {
                     text: "Volledige naam: "

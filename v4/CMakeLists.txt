@@ -19,12 +19,16 @@ qt_add_executable(appv4
     vehiclemodel.cpp
     vehiclelist.h
     vehiclelist.cpp
+    gascardmodel.h
+    gascardmodel.cpp
+    gascardlist.h
+    gascardlist.cpp
 )
 
 qt_add_qml_module(appv4
     URI v4
     VERSION 1.0
-    QML_FILES Main.qml CustomButton.qml CustomMenuItem.qml DriverList.qml VehicleList.qml
+    QML_FILES Main.qml CustomButton.qml CustomMenuItem.qml DriverList.qml VehicleList.qml GascardList.qml
     RESOURCES logoshort.png user-solid.svg car-solid.svg gas-pump-solid.svg
 )
 

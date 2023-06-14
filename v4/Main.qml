@@ -4,7 +4,7 @@ import QtQuick.Layouts
 
 Window {
     id: root
-    width: 800
+    width: 1000
     height: 600
     visible: true
     title: qsTr("Stolos - Qt frontend")
@@ -25,6 +25,7 @@ Window {
                     heroSection.visible = true;
                     driverSection.visible = false;
                     vehicleSection.visible = false;
+                    gascardSection.visible = false;
                 }
             }
             CustomMenuItem {
@@ -35,6 +36,7 @@ Window {
                     heroSection.visible = false;
                     driverSection.visible = true;
                     vehicleSection.visible = false;
+                    gascardSection.visible = false;
                     driverList.fetchDrivers();
                 }
             }
@@ -45,12 +47,20 @@ Window {
                     heroSection.visible = false;
                     driverSection.visible = false;
                     vehicleSection.visible = true;
+                    gascardSection.visible = false;
                     vehicleList.fetchVehicles();
                 }
             }
             CustomMenuItem {
                 height: 20
                 title: "Tankkaarten"
+                area.onClicked: {
+                    heroSection.visible = false;
+                    driverSection.visible = false;
+                    vehicleSection.visible = false;
+                    gascardSection.visible = true;
+                    gascardList.fetchGascards();
+                }
             }
         }
         Rectangle {
@@ -134,6 +144,19 @@ Window {
             VehicleList{}
 
         }
+        Rectangle {
+            id: gascardSection
+            visible: false
+            implicitWidth: root.width * 0.8
+            implicitHeight: root.height * 0.5
+
+            color: "#fafafa"
+            Layout.alignment: Qt.AlignHCenter
+            radius: 10
+
+            GascardList{}
+
+        }
         Row {
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
             height: root.height * 0.2
@@ -146,6 +169,8 @@ Window {
                 area.onClicked: {
                     heroSection.visible = true;
                     driverSection.visible = false;
+                    vehicleSection.visible = false;
+                    gascardSection.visible = false;
                 }
             }
             CustomButton {
@@ -155,18 +180,34 @@ Window {
                 area.onClicked: {
                     heroSection.visible = false;
                     driverSection.visible = true;
-                    driverList.fetchDriverData()
+                    vehicleSection.visible = false;
+                    gascardSection.visible = false;
+                    driverList.fetchDrivers();
                 }
             }
             CustomButton {
                 height: 40
                 width: 150
                 title: "Voertuigen"
+                area.onClicked: {
+                    heroSection.visible = false;
+                    driverSection.visible = false;
+                    vehicleSection.visible = true;
+                    gascardSection.visible = false;
+                    vehicleList.fetchVehicles();
+                }
             }
             CustomButton {
                 height: 40
                 width: 150
                 title: "Tankkaarten"
+                area.onClicked: {
+                    heroSection.visible = false;
+                    driverSection.visible = false;
+                    vehicleSection.visible = false;
+                    gascardSection.visible = true;
+                    gascardList.fetchGascards();
+                }
             }
         }
     }

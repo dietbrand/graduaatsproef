@@ -1,25 +1,23 @@
-#ifndef VEHICLEMODEL_H
-#define VEHICLEMODEL_H
+#ifndef GASCARDMODEL_H
+#define GASCARDMODEL_H
 
 #include <QAbstractListModel>
 
-class VehicleList;
+class GascardList;
 
-class VehicleModel : public QAbstractListModel
+class GascardModel : public QAbstractListModel
 {
     Q_OBJECT
-    Q_PROPERTY(VehicleList *list READ list WRITE setList NOTIFY listChanged)
-
+    Q_PROPERTY(GascardList *list READ list WRITE setList NOTIFY listChanged)
 public:
-    explicit VehicleModel(QObject *parent = nullptr);
+    explicit GascardModel(QObject *parent = nullptr);
 
     enum {
-        VinRole = Qt::UserRole,
-        LicensePlateRole,
-        BrandModelRole,
-        DriverRole
+        CardNumberRole = Qt::UserRole,
+        BlockedRole,
+        PincodeRole,
+        DriverRole,
     };
-
     // Basic functionality:
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
 
@@ -33,15 +31,15 @@ public:
 
     virtual QHash<int,QByteArray> roleNames() const override;
 
-    VehicleList *list() const;
-    void setList(VehicleList *list);
+    GascardList *list() const;
+    void setList(GascardList *list);
 
 signals:
     void listChanged();
     void responseChanged();
 
 private:
-    VehicleList *mList;
+    GascardList *mList;
 };
 
-#endif // VEHICLEMODEL_H
+#endif // GASCARDMODEL_H
