@@ -24,6 +24,7 @@ Window {
                 area.onClicked: {
                     heroSection.visible = true;
                     driverSection.visible = false;
+                    vehicleSection.visible = false;
                 }
             }
             CustomMenuItem {
@@ -31,14 +32,21 @@ Window {
                 title: "Bestuurders"
 
                 area.onClicked: {
-                    heroSection.visible = false
-                    driverSection.visible = true
-                    driverList.fetchDriverData()
+                    heroSection.visible = false;
+                    driverSection.visible = true;
+                    vehicleSection.visible = false;
+                    driverList.fetchDriverData();
                 }
             }
             CustomMenuItem {
                 height: 20
                 title: "Voertuigen"
+                area.onClicked: {
+                    heroSection.visible = false;
+                    driverSection.visible = false;
+                    vehicleSection.visible = true;
+                    vehicleList.fetchVehicleData();
+                }
             }
             CustomMenuItem {
                 height: 20
@@ -111,6 +119,19 @@ Window {
             radius: 10
 
             DriverList{}
+
+        }
+        Rectangle {
+            id: vehicleSection
+            visible: false
+            implicitWidth: root.width * 0.8
+            implicitHeight: root.height * 0.5
+
+            color: "#fafafa"
+            Layout.alignment: Qt.AlignHCenter
+            radius: 10
+
+            VehicleList{}
 
         }
         Row {
